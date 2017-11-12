@@ -190,8 +190,8 @@ class C1_Alice29(Case):  # inherit from Case
     # describe your test case, data type, size, etc ...
     description = "http://corpus.canterbury.ac.nz/descriptions/cantrbry/text.html"
 
-    def setup(
-            self):  # a method setup your test files, typically you can download it from somewhere
+    # a method setup your test files, typically you can download it from somewhere
+    def setup(self):
         file_path = self.dirpath.append_parts(
             "alice29.txt")  # define the file path
         if not file_path.exists():

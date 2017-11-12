@@ -1,7 +1,7 @@
 Extend benchmark test case
 ==============================================================================
 
-First, let's take a look at ``run.py`` file, this is how a test case looks like:
+First, let's take a look at ``run.py`` file (``/compress-project/benchmark/run.py``), this is how a test case looks like:
 
 .. code-block:: python
 
@@ -9,8 +9,8 @@ First, let's take a look at ``run.py`` file, this is how a test case looks like:
         # describe your test case, data type, size, etc ...
         description = "http://corpus.canterbury.ac.nz/descriptions/cantrbry/text.html"
 
-        def setup(
-                self):  # a method setup your test files, typically you can download it from somewhere
+        # a method setup your test files, typically you can download it from somewhere
+        def setup(self):
             file_path = self.dirpath.append_parts(
                 "alice29.txt")  # define the file path
             if not file_path.exists():
