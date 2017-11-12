@@ -40,6 +40,17 @@ Usage::
 
 `This website <https://quixdb.github.io/squash-benchmark/>`_ provides comprehensive comparison and visualization. But how do you know **how it works on your own production environment?**.
 
+``compress`` comes with a tool to run benchmark test for **All test case, All algorithm, All parameters**, and you will get informative stats about ratio, compress/decompress speed in ``.tab`` and ``ascii table`` format. Then You are able to visualize it in the way you preferred.
+
+To run benchmark test, just::
+
+    make up
+    make benchmark
+
+If you use **Windows** (doesn't have ``make`` command), this is the `SOLUTION <https://github.com//MacHu-GWU/pygitrepo-project#things-need-to-install>`_
+
+Of course, you can **extend with your own test case** (`How to extend test case <https://github.com/MacHu-GWU/compress-project/blob/master/benchmark/README.rst>`_).
+
 
 Quick Links
 ------------------------------------------------------------------------------

@@ -3,7 +3,7 @@ pandas
 bokeh
 requests
 diskcache
-openpyxl
+pathlib_mate
 sfm==0.0.14
 loggerFactory==0.0.4
 pandas_mate==0.0.3

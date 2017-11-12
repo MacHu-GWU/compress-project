@@ -3,7 +3,7 @@
 
 """
 This script run benchmark on several popular dataset, you will get informative
-stats about ratio, compress/decompress speed in `.tab` and `ascii table` format.
+stats about ratio, compress/decompress speed in ``.tab`` and ``ascii table`` format.
 You are able to visualize it in the way you preferred.
 
 Inspired by: https://quixdb.github.io/squash-benchmark/
@@ -85,10 +85,16 @@ REPEAT_TIMES = 10
 
 
 class Case(object):
+    """
+    Defines how you setup your test data.
+    """
     description = None
 
     @property
     def dirpath(self):
+        """
+        Test case file directory.
+        """
         p = pwd.append_parts(self.__class__.__name__)
         try:
             p.mkdir()
@@ -180,15 +186,26 @@ class Case(object):
         return self._run_benchmark()
 
 
-class C1_Alice29(Case):
+class C1_Alice29(Case):  # inherit from Case
+    # describe your test case, data type, size, etc ...
     description = "http://corpus.canterbury.ac.nz/descriptions/cantrbry/text.html"
 
-    def setup(self):
-        file_path = self.dirpath.append_parts("alice29.txt")
+    def setup(
+            self):  # a method setup your test files, typically you can download it from somewhere
+        file_path = self.dirpath.append_parts(
+            "alice29.txt")  # define the file path
         if not file_path.exists():
+            # define where to download the file
             url = "https://s3.amazonaws.com/www.wbh-doc.com/FileHost/compress-project-test-data/alice29.txt"
+            # get content
             content = spider.get_content(url)
+            # write to file
             file_path.write_bytes(content)
+
+    def run_benchmark(self):  # this method helps you to customize you test case
+        # for exmaple, it's a 140KB file, we can run this 10 times
+        # for large test case, I recommend smaller number
+        return self._run_benchmark(repeat_times=10)
 
 
 class C2_Dickens(Case):
@@ -264,10 +281,15 @@ def run():
         dfs.append(df)
 
     df = pd.concat(dfs)
+
+    csv_file = Path(__file__).change(new_basename="benchmark.tab").abspath
+    df.to_csv(csv_file, sep="\t", index=False)
+
     df = select_informative_columns(df)
 
-    df.to_csv("benchmark.tab", sep="\t", index=False)
-    with open("benchmark.txt", "wb") as f:
+    ascii_table_file = Path(__file__).change(
+        new_basename="benchmark.txt").abspath
+    with open(ascii_table_file, "wb") as f:
         f.write(ascii_table(df).encode("utf-8"))
 
 
