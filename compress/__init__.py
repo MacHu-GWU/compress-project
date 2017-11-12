@@ -13,5 +13,5 @@ __github_username__ = "MacHu-GWU"
 try:
     from .compressor import Compressor, CompressAlgorithms
     from .string_encoding import Encoder, EncodingAlgorithms
-except ImportError:  # pragma: no cover
+except:  # pragma: no cover
     pass
