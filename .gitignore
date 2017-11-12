@@ -4,6 +4,10 @@ compress.egg-info/
 compress-*/
 index.rst
 
+benchmark/C*
+benchmark/*.txt
+benchmark/*.tab
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

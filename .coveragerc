@@ -4,6 +4,7 @@
 omit =
     compress/pkg/*
     compress/zzz_ezinstall.py
+    compress/sixmini.py
 
 [report]
 # Regexes for lines to exclude from consideration

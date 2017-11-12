@@ -20,7 +20,25 @@
 Welcome to ``compress`` Documentation
 ==============================================================================
 
-Documentation for ``compress``.
+There's lots of mature data compression algorithm you can choose from, ``compress`` provides **normalized API** to use them and **switch between them**.
+
+It supports:
+
+- `zlib <https://docs.python.org/2/library/zlib.html>`_
+- `bz2 <https://docs.python.org/2/library/bz2.html>`_
+- `lzma <https://docs.python.org/3/library/lzma.html>`_ (Also works for PY2)
+- `snappy <https://pypi.python.org/pypi/python-snappy>`_
+- `lz4 <https://pypi.python.org/pypi/lz4>`_
+
+Usage::
+
+    >>> from compress import Compressor
+    >>> c = Compressor()
+    >>> c.use_zlib() # or use_bz2, use_lzma, use_lz4, use_snappy
+    >>> c.compress(binary_data, zlib_level=9)
+    >>> c.decompress(binary_data)
+
+`This website <https://quixdb.github.io/squash-benchmark/>`_ provides comprehensive comparison and visualization. But how do you know **how it works on your own production environment?**.
 
 
 Quick Links

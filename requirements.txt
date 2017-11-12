@@ -1,0 +1,4 @@
+backports.lzma
+pylzma
+python-snappy
+lz4
