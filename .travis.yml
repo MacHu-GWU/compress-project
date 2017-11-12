@@ -6,9 +6,11 @@ python:
   - "3.5"
   - "3.6"
 
+os: osx
+
 install:
-  - sudo apt-get install gcc # Install gcc
-  - sudo apt-get install libsnappy1 # Install google snappy
+  - brew install snappy # snappy library from Google
+  - CPPFLAGS="-I/usr/local/include -L/usr/local/lib"
   - pip install --editable . # Install it self
   - pip install -r requirements-test.txt # Install test dependencies
   - pip install codecov # Install coveralls
