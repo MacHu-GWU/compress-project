@@ -24,11 +24,17 @@ There's lots of mature data compression algorithm you can choose from, ``compres
 
 It supports:
 
-- `zlib <https://docs.python.org/2/library/zlib.html>`_
-- `bz2 <https://docs.python.org/2/library/bz2.html>`_
-- `lzma <https://docs.python.org/3/library/lzma.html>`_ (Also works for PY2)
-- `snappy <https://pypi.python.org/pypi/python-snappy>`_
-- `lz4 <https://pypi.python.org/pypi/lz4>`_
+- `zlib <https://docs.python.org/2/library/zlib.html>`_.
+- `bz2 <https://docs.python.org/2/library/bz2.html>`_.
+- `lzma <https://docs.python.org/3/library/lzma.html>`_, high compression ratio but slow (it's part of standard library after Python3.4, you can use `backports.lzma <https://pypi.python.org/pypi/backports.lzma>`_ for versions before that.)
+- `pylzma <https://pypi.python.org/pypi/pylzma>`_, another implementation, faster in decompression than ``lzma``.
+- `snappy <https://pypi.python.org/pypi/python-snappy>`_, from Google, lower compression ratio but super fast!
+- `lz4 <https://pypi.python.org/pypi/lz4>`_, lower ratio, super fast!
+
+.. note::
+
+    some package are not installed along with ``compress``. Because **all of them needs C compiler**, you have to manually install them. If you have trouble installing C compiler for your OS, read `THIS TUTORIAL <https://github.com/MacHu-GWU/Setup-Environment-for-Python-Developer/blob/master/05-FAQ-Failed-to-compile-source-code.rst>`_.
+
 
 Usage::
 
@@ -47,7 +53,7 @@ To run benchmark test, just::
     make up
     make benchmark
 
-If you use **Windows** (doesn't have ``make`` command), this is the `SOLUTION <https://github.com//MacHu-GWU/pygitrepo-project#things-need-to-install>`_
+If you use **Windows** (doesn't have ``make`` command), this is the `SOLUTION <https://pygitrepo.readthedocs.io/index.html#software-environment-you-should-have>`_
 
 Of course, you can **extend with your own test case** (`How to extend test case <https://github.com/MacHu-GWU/compress-project/blob/master/benchmark/README.rst>`_).
 

@@ -343,3 +343,9 @@ publish: dev_dep ## ** Publish This Library to PyPI
 	${BIN_PYTHON} setup.py sdist bdist_wheel
 	${BIN_TWINE} upload dist/*
 	-rm -rf build dist .egg ${PACKAGE_NAME}.egg-info
+
+
+.PHONY: benchmark
+benchmark: dev_install ## Run benchmark test
+	${BIN_PIP} install -r requirements-benchmark.txt
+	${BIN_PYTHON} ./benchmark/run.py
