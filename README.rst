@@ -56,10 +56,10 @@ Quick Links
 ------------------------------------------------------------------------------
 
 - .. image:: https://img.shields.io/badge/Link-Document-red.svg
-      :target: http://www.wbh-doc.com.s3.amazonaws.com/compress/index.html
+      :target: https://compress.readthedocs.io/index.html
 
 - .. image:: https://img.shields.io/badge/Link-API_Reference_and_Source_Code-red.svg
-      :target: http://www.wbh-doc.com.s3.amazonaws.com/compress/py-modindex.html
+      :target: https://compress.readthedocs.io/py-modindex.html
 
 - .. image:: https://img.shields.io/badge/Link-Install-red.svg
       :target: `install`_
@@ -90,3 +90,8 @@ To upgrade to latest version:
 .. code-block:: console
 
     $ pip install --upgrade compress
+
+.. note::
+
+    to install lzma, snappy, lz4 for python, it may requires gcc comiler. If you are using Windows,
+

@@ -13,9 +13,9 @@ import binascii
 import warnings
 
 if sys.version_info.major >= 3 and sys.version_info.minor >= 4:  # pragma: no cover
-    base85_flag = True
+    flag_base85 = True
 else:  # pragma: no cover
-    base85_flag = False
+    flag_base85 = False
 
 try:
     from . import sixmini
@@ -58,12 +58,14 @@ class EncodingAlgorithmsMeta(type):
         for key, value in attrs.items():
             if inspect.isclass(value):
                 if issubclass(value, EncodingAlgorithm):
-                    if key == "Base85" and base85_flag is False:  # pragma: no cover
-                        continue
-
                     algo_name = key
                     algo_class = value
-                    algo_class.validate_implement()
+
+                    try:
+                        algo_class.validate_implement()
+                    except:  # pragma: no cover
+                        continue
+
                     algo_class.name = algo_class.__name__
                     _mapper[key] = {
                         "_encode": algo_class.encode,
@@ -223,7 +225,7 @@ class Encoder(object):
         """
         Use base85 algorithm.
         """
-        if base85_flag:
+        if flag_base85:
             return self.use(EncodingAlgorithms.Base85)
         else:
             warnings.warn("base85 is NOT available until Python3.4!")

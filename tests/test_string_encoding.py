@@ -4,8 +4,10 @@
 import pytest
 from pytest import raises, warns
 import sys
-from compress.string_encoding import Encoder, EncodingAlgorithms
-from compress.string_encoding import base85_flag
+from compress.string_encoding import (
+    Encoder, EncodingAlgorithms,
+    flag_base85,
+)
 
 
 with open(__file__, "rb") as f:
@@ -22,16 +24,18 @@ class TestEncoder(object):
 
     def test_use(self):
         encoder = Encoder()
+
         encoder.use_hex()
         encoder.use_base32()
         encoder.use_base64()
 
-        if base85_flag:
+        if flag_base85:
             encoder.use_base85()
         else:
             with warns(Warning):
                 encoder.use_base85()
 
+        encoder.use(EncodingAlgorithms.Base64)
         with raises(ValueError):
             encoder.use("Unknown")
 

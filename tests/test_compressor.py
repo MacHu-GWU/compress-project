@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from pytest import raises
+from pytest import raises, warns
 import sys
-from compress.compressor import Compressor, CompressAlgorithms
+from compress.compressor import (
+    Compressor, CompressAlgorithms,
+    flag_lzma, flag_pylzma, flag_snappy, flag_lz4,
+)
 
 with open(__file__, "rb") as f:
     data = f.read()
@@ -22,10 +25,32 @@ class TestCompressor(object):
         compressor = Compressor()
         compressor.use_bz2()
         compressor.use_zlib()
-        compressor.use_lzma()
-        compressor.use_pylzma()
-        compressor.use_snappy()
-        compressor.use_lz4()
+
+        if flag_lzma:
+            compressor.use_lzma()
+        else:
+            with warns(Warning):
+                compressor.use_lzma()
+
+        if flag_pylzma:
+            compressor.use_pylzma()
+        else:
+            with warns(Warning):
+                compressor.use_pylzma()
+
+        if flag_snappy:
+            compressor.use_snappy()
+        else:
+            with warns(Warning):
+                compressor.use_snappy()
+
+        if flag_lz4:
+            compressor.use_lz4()
+        else:
+            with warns(Warning):
+                compressor.use_lz4()
+
+        compressor.use(CompressAlgorithms.Zlib)
         with raises(ValueError):
             compressor.use("Unknown")
 

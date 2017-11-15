@@ -2,7 +2,7 @@
 compress_venv/
 compress.egg-info/
 compress-*/
-index.rst
+
 
 benchmark/C*
 benchmark/*.txt

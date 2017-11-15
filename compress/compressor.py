@@ -1,33 +1,40 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import warnings
 import inspect
 
 import zlib
-
 import bz2
 
+flag_lzma = True
 try:
     import lzma
 except ImportError:  # pragma: no cover
-    from backports import lzma
+    try:
+        from backports import lzma
+    except:  # pragma: no cover
+        flag_lzma = False
 except:  # pragma: no cover
-    pass
+    flag_lzma = False
 
+flag_pylzma = True
 try:
     import pylzma
 except:  # pragma: no cover
-    pass
+    flag_pylzma = False
 
+flag_snappy = True
 try:
     import snappy
 except:  # pragma: no cover
-    pass
+    flag_snappy = False
 
+flag_lz4 = True
 try:
     import lz4.block
 except:  # pragma: no cover
-    pass
+    flag_lz4 = False
 
 try:
     from . import sixmini
@@ -35,6 +42,13 @@ except:  # pragma: no cover
     from compress import sixmini
 
 _example_data = ("Hello World" * 1000).encode("utf-8")
+_warning_msg = (
+    "{pkg_name} is not properly installed! "
+    "please try `pip install {pkg_name}`. "
+    "if you have problem to compile the .c file, "
+    "download pre-built binary installation file (.whl) from "
+    "https://www.lfd.uci.edu/~gohlke/pythonlibs/#{pkg_name}"
+)
 
 
 class CompressAlgorithm(object):
@@ -62,7 +76,12 @@ class CompressAlgorithmsMeta(type):
                 if issubclass(value, CompressAlgorithm):
                     algo_name = key
                     algo_class = value
-                    algo_class.validate_implement()
+
+                    try:
+                        algo_class.validate_implement()
+                    except:  # pragma: no cover
+                        continue
+
                     algo_class.name = algo_class.__name__
                     _mapper[key] = {
                         "_compress": algo_class.compress,
@@ -300,7 +319,8 @@ class Compressor(object):
 
         if algo_name in CompressAlgorithms._algorithm_set:
             self._compress = CompressAlgorithms._mapper[algo_name]["_compress"]
-            self._decompress = CompressAlgorithms._mapper[algo_name]["_decompress"]
+            self._decompress = CompressAlgorithms._mapper[algo_name][
+                "_decompress"]
             return self
         else:
             raise ValueError(
@@ -320,29 +340,41 @@ class Compressor(object):
         """
         return self.use(CompressAlgorithms.Bz2)
 
-    def use_lzma(self):
+    def use_lzma(self): # pragma: no cover
         """
         Use lzma algorithm.
         """
-        return self.use(CompressAlgorithms.LZMA)
+        if flag_lzma:
+            return self.use(CompressAlgorithms.LZMA)
+        else:
+            warnings.warn(_warning_msg.format(pkg_name="backports.lzma"))
 
-    def use_pylzma(self):
+    def use_pylzma(self): # pragma: no cover
         """
         Use pylzma algorithm.
         """
-        return self.use(CompressAlgorithms.PyLZMA)
+        if flag_pylzma:
+            return self.use(CompressAlgorithms.PyLZMA)
+        else:
+            warnings.warn(_warning_msg.format(pkg_name="pylzma"))
 
-    def use_snappy(self):
+    def use_snappy(self): # pragma: no cover
         """
         Use snappy algorithm.
         """
-        return self.use(CompressAlgorithms.Snappy)
+        if flag_snappy:
+            return self.use(CompressAlgorithms.Snappy)
+        else:
+            warnings.warn(_warning_msg.format(pkg_name="python-snappy"))
 
-    def use_lz4(self):
+    def use_lz4(self): # pragma: no cover
         """
         Use lz4 algorithm.
         """
-        return self.use(CompressAlgorithms.Lz4)
+        if flag_lz4:
+            return self.use(CompressAlgorithms.Lz4)
+        else:  # pragma: no cover
+            warnings.warn(_warning_msg.format(pkg_name="lz4"))
 
     def _compress(self, data, **kwargs):
         raise NotImplementedError

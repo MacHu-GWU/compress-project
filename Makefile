@@ -143,7 +143,8 @@ BIN_TOX="${BIN_DIR}/tox"
 
 
 S3_PREFIX="s3://${BUCKET_NAME}/${PACKAGE_NAME}"
-DOC_URL="http://${BUCKET_NAME}.s3.amazonaws.com/${PACKAGE_NAME}/index.html"
+RTD_DOC_URL="https://compress.readthedocs.io/index.html"
+AWS_DOC_URL="http://${BUCKET_NAME}.s3.amazonaws.com/${PACKAGE_NAME}/index.html"
 
 PY_VERSION="${PY_VER_MAJOR}.${PY_VER_MINOR}.${PY_VER_MICRO}"
 
@@ -159,7 +160,8 @@ info: ## ** Show information about python, pip in this environment
 	@echo - venv: ${VENV_DIR_REAL} "\n"
 	@echo - python executable: ${BIN_PYTHON} "\n"
 	@echo - pip executable: ${BIN_PIP} "\n"
-	@echo - document: ${DOC_URL} "\n"
+	@echo - document on rtd: ${RTD_DOC_URL} "\n"
+	@echo - document on s3: ${AWS_DOC_URL} "\n"
 	@echo - site-packages: ${SITE_PACKAGES} "\n"
 
 
@@ -341,9 +343,3 @@ publish: dev_dep ## ** Publish This Library to PyPI
 	${BIN_PYTHON} setup.py sdist bdist_wheel
 	${BIN_TWINE} upload dist/*
 	-rm -rf build dist .egg ${PACKAGE_NAME}.egg-info
-
-
-.PHONY: benchmark
-benchmark: dev_install ## Run benchmark test
-	${BIN_PIP} install -r requirements-benchmark.txt
-	${BIN_PYTHON} ./benchmark/run.py
