@@ -1,10 +1,13 @@
 # Coverage.py is a tool for measuring code coverage of Python programs.
-# for more info: https://coverage.readthedocs.io/en/coverage-4.4.1/config.html
+# for more info: https://coverage.readthedocs.io/en/latest/config.html
 [run]
 omit =
+    compress/_version.py
+    compress/cli.py
     compress/pkg/*
-    compress/zzz_ezinstall.py
-    compress/sixmini.py
+    compress/docs/*
+    compress/tests/*
+    compress/handlers/*
 
 [report]
 # Regexes for lines to exclude from consideration
