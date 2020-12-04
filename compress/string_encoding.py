@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -6,21 +5,10 @@ string encoding is a technique to convert arbitrary binary data to string
 based encoding binary, which is easily to represent string.
 """
 
-import sys
 import inspect
 import base64
 import binascii
 import warnings
-
-if sys.version_info.major >= 3 and sys.version_info.minor >= 4:  # pragma: no cover
-    flag_base85 = True
-else:  # pragma: no cover
-    flag_base85 = False
-
-try:
-    from . import sixmini
-except:  # pragma: no cover
-    from compress import sixmini
 
 _example_data = ("Hello World" * 1000).encode("utf-8")
 
@@ -82,8 +70,7 @@ class EncodingAlgorithmsMeta(type):
         return klass
 
 
-@sixmini.add_metaclass(EncodingAlgorithmsMeta)
-class EncodingAlgorithms(object):
+class EncodingAlgorithms(metaclass=EncodingAlgorithmsMeta):
     """
     Collection of string encoding algorithms.
 
@@ -225,10 +212,7 @@ class Encoder(object):
         """
         Use base85 algorithm.
         """
-        if flag_base85:
-            return self.use(EncodingAlgorithms.Base85)
-        else:
-            warnings.warn("base85 is NOT available until Python3.4!")
+        return self.use(EncodingAlgorithms.Base85)
 
     def _encode(self, data, **kwargs):
         """
