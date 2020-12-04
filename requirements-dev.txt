@@ -1,4 +1,5 @@
 pathlib_mate                    # autopep8 your code
-twine>=1.13.0                   # make distribution archive
-wheel>=0.33.1                   # make pre-compiled distribution package
-configirl==0.0.7                # centralized config management
+twine                           # make distribution archive
+wheel                           # make pre-compiled distribution package
+lz4
+python-snappy
