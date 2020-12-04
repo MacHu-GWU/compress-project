@@ -1,11 +1,23 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from pytest import raises, approx
 
 
 def test():
     import compress
+
+    _ = compress.Algorithm
+    _ = compress.Compressor
+    _ = compress.compress_bytes_to_bytes
+    _ = compress.compress_str_to_bytes
+    _ = compress.compress_bytes_to_b64str
+    _ = compress.compress_str_to_b64str
+    _ = compress.decompress_bytes_to_bytes
+    _ = compress.decompress_bytes_to_str
+    _ = compress.decompress_b64str_to_bytes
+    _ = compress.decompress_b64str_to_str
+    _ = compress.Encoder
+    _ = compress.EncodingAlgorithms
     pass
 
 
