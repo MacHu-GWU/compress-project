@@ -1,6 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import typing
 import base64
 import bz2
 import gzip
@@ -10,7 +10,7 @@ from enum import Enum
 try:
     import snappy
 except:  # pragma: no cover
-    flag_snappy = False
+    pass
 
 try:
     import lz4.frame, lz4.block, lz4.stream
@@ -34,7 +34,7 @@ def bz2_decompress(data: bytes) -> bytes:
     return bz2.decompress(data)
 
 
-def lzma_compress(data: bytes) -> bytes:
+def lzma_compress(data: bytes, mode="") -> bytes:
     return lzma.compress(data)
 
 
@@ -50,8 +50,8 @@ def snappy_decompress(data: bytes) -> bytes:
     return snappy.decompress(data)
 
 
-def lz4_compress(data: bytes) -> bytes:
-    return lz4.block.compress(data)
+def lz4_compress(data: bytes, mode: str="default") -> bytes:
+    return lz4.block.compress(data, mode=mode)
 
 
 def lz4_decompress(data: bytes) -> bytes:
@@ -128,7 +128,6 @@ class Compressor:
 
     Example::
 
-
         >>> binary_data = ("hello world" * 100).encode("utf-8")
         >>> compressor = Compressor()
         >>> compressed_binary_data = compressor.compress(binary_data)
@@ -162,13 +161,16 @@ class Compressor:
     def use_lz4(self):
         return self.use(Algorithm.lz4)
 
-    def compress(self, data, **kwargs):
+    def compress(self, data: typing.Union[str, bytes], **kwargs) -> bytes:
         """
         Compress binary data, returns binary data
         """
-        return compress_bytes_to_bytes(algo=self.algo, data=data, **kwargs)
+        if isinstance(data, bytes):
+            return compress_bytes_to_bytes(algo=self.algo, data=data, **kwargs)
+        else:
+            return compress_str_to_bytes(algo=self.algo, data=data, **kwargs)
 
-    def decompress(self, data, **kwargs):
+    def decompress(self, data: bytes, **kwargs) -> bytes:
         """
         Decompress binary data, returns binary data
         """

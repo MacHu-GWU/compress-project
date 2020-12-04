@@ -8,12 +8,11 @@ based encoding binary, which is easily to represent string.
 import inspect
 import base64
 import binascii
-import warnings
 
 _example_data = ("Hello World" * 1000).encode("utf-8")
 
 
-class EncodingAlgorithm(object):
+class EncodingAlgorithm:
     """
     Base encoding algorithm class.
     """
@@ -148,12 +147,13 @@ class EncodingAlgorithms(metaclass=EncodingAlgorithmsMeta):
             return base64.b85decode(data)
 
 
-class Encoder(object):
+class Encoder:
     """
     String encoder utility class.
 
     Example::
 
+        >>> binary_data = ("hello world" * 100).encode("utf-8")
         >>> encoder = Encoder().use_base64()
         >>> encoder.encode(binary_data)
         ...
