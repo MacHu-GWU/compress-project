@@ -15,7 +15,7 @@ Release and Version History
 **Miscellaneous**
 
 
-0.0.3 (TODO)
+0.0.3 (2020-12-03)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
 
