@@ -1,0 +1,44 @@
+---
+
+algorithms:
+  - name: gzip
+    params:
+      - compresslevel: 1
+      - compresslevel: 5
+      - compresslevel: 9
+  - name: bz2
+    params:
+      - compresslevel: 1
+      - compresslevel: 5
+      - compresslevel: 9
+  - name: lzma
+    params: [{}]
+  - name: snappy
+    params: [{}]
+  - name: lz4
+    params:
+      - mode: default
+      - mode: fast
+      - mode: high_compression
+
+dataset:
+  - name: alice29
+    type: novel
+    description: http://corpus.canterbury.ac.nz/descriptions/cantrbry/text.html
+    download_url: https://s3.amazonaws.com/www.wbh-doc.com/FileHost/compress-project-test-data/alice29.txt
+  - name: dickens
+    type: novel
+    description: http://sun.aei.polsl.pl/~sdeor/index.php?page=silesia
+    download_url: https://s3.amazonaws.com/www.wbh-doc.com/FileHost/compress-project-test-data/dickens.txt
+  - name: enwik8
+    type: english wikipedia
+    description: http://www.mattmahoney.net/dc/textdata.html
+    download_url: https://s3.amazonaws.com/www.wbh-doc.com/FileHost/compress-project-test-data/enwik8.txt
+  - name: bliss
+    type: image
+    description: https://en.wikipedia.org/wiki/Bliss_(image)
+    download_url: https://s3.amazonaws.com/www.wbh-doc.com/FileHost/compress-project-test-data/windows_xp_bliss-wide.jpg
+  - name: osdb
+    type: binary
+    description: https://sourceforge.net/projects/osdb/
+    download_url: https://s3.amazonaws.com/www.wbh-doc.com/FileHost/compress-project-test-data/osdb

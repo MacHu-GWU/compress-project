@@ -1,0 +1,12 @@
+# dependencies to run bench mark
+lz4
+python-snappy
+attrs
+tabulate
+requests
+diskcache
+pathlib_mate
+pyyaml
+sfm==0.0.17
+loggerFactory==0.0.5
+pandas_mate==0.0.3
