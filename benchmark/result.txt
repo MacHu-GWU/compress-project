@@ -1,0 +1,74 @@
++----------------+-------------------+----------------+--------------------+-------------+-------------------------+--------------+------------------+------------------+-----------+
+| dataset_name   | dataset_type      |   dataset_size | dataset_size_rep   | algo_name   | com_kwargs              |   after_size | after_size_rep   |   compress_ratio |   elapsed |
+|----------------+-------------------+----------------+--------------------+-------------+-------------------------+--------------+------------------+------------------+-----------|
+| alice29        | novel             |         152122 | 148.56 KB          | gzip        | {"compresslevel": 1}    |        65181 | 63.65 KB         |         0.428478 |  0.001135 |
+| alice29        | novel             |         152122 | 148.56 KB          | gzip        | {"compresslevel": 5}    |        55667 | 54.36 KB         |         0.365937 |  0.003097 |
+| alice29        | novel             |         152122 | 148.56 KB          | gzip        | {"compresslevel": 9}    |        54215 | 52.94 KB         |         0.356392 |  0.006127 |
+| alice29        | novel             |         152122 | 148.56 KB          | bz2         | {"compresslevel": 1}    |        46028 | 44.95 KB         |         0.302573 |  0.007152 |
+| alice29        | novel             |         152122 | 148.56 KB          | bz2         | {"compresslevel": 5}    |        43235 | 42.22 KB         |         0.284213 |  0.00712  |
+| alice29        | novel             |         152122 | 148.56 KB          | bz2         | {"compresslevel": 9}    |        43235 | 42.22 KB         |         0.284213 |  0.007147 |
+| alice29        | novel             |         152122 | 148.56 KB          | lzma        | {}                      |        48525 | 47.39 KB         |         0.318987 |  0.023838 |
+| alice29        | novel             |         152122 | 148.56 KB          | snappy      | {}                      |        88067 | 86.00 KB         |         0.578923 |  0.000245 |
+| alice29        | novel             |         152122 | 148.56 KB          | lz4         | {}                      |        88736 | 86.66 KB         |         0.583321 |  0.00026  |
+| alice29        | novel             |         152122 | 148.56 KB          | lz4         | {}                      |        88736 | 86.66 KB         |         0.583321 |  0.000217 |
+| alice29        | novel             |         152122 | 148.56 KB          | lz4         | {}                      |        88736 | 86.66 KB         |         0.583321 |  0.000202 |
+| alice29        | novel             |         152122 | 148.56 KB          | zstd        | {"level_or_option": 1}  |        59690 | 58.29 KB         |         0.392382 |  0.000404 |
+| alice29        | novel             |         152122 | 148.56 KB          | zstd        | {"level_or_option": 10} |        51927 | 50.71 KB         |         0.341351 |  0.003588 |
+| alice29        | novel             |         152122 | 148.56 KB          | zstd        | {"level_or_option": 20} |        49244 | 48.09 KB         |         0.323714 |  0.028516 |
+| dickens        | novel             |       10192479 | 9.72 MB            | gzip        | {"compresslevel": 1}    |      4585663 | 4.37 MB          |         0.449907 |  0.080789 |
+| dickens        | novel             |       10192479 | 9.72 MB            | gzip        | {"compresslevel": 5}    |      3949220 | 3.77 MB          |         0.387464 |  0.23321  |
+| dickens        | novel             |       10192479 | 9.72 MB            | gzip        | {"compresslevel": 9}    |      3854780 | 3.68 MB          |         0.378198 |  0.433198 |
+| dickens        | novel             |       10192479 | 9.72 MB            | bz2         | {"compresslevel": 1}    |      3302798 | 3.15 MB          |         0.324043 |  0.472588 |
+| dickens        | novel             |       10192479 | 9.72 MB            | bz2         | {"compresslevel": 5}    |      2909164 | 2.77 MB          |         0.285423 |  0.487959 |
+| dickens        | novel             |       10192479 | 9.72 MB            | bz2         | {"compresslevel": 9}    |      2799553 | 2.67 MB          |         0.274669 |  0.49041  |
+| dickens        | novel             |       10192479 | 9.72 MB            | lzma        | {}                      |      2831709 | 2.70 MB          |         0.277823 |  3.61505  |
+| dickens        | novel             |       10192479 | 9.72 MB            | snappy      | {}                      |      6340300 | 6.05 MB          |         0.622057 |  0.022764 |
+| dickens        | novel             |       10192479 | 9.72 MB            | lz4         | {}                      |      6428779 | 6.13 MB          |         0.630738 |  0.01972  |
+| dickens        | novel             |       10192479 | 9.72 MB            | lz4         | {}                      |      6428779 | 6.13 MB          |         0.630738 |  0.020128 |
+| dickens        | novel             |       10192479 | 9.72 MB            | lz4         | {}                      |      6428779 | 6.13 MB          |         0.630738 |  0.019877 |
+| dickens        | novel             |       10192479 | 9.72 MB            | zstd        | {"level_or_option": 1}  |      4261768 | 4.06 MB          |         0.418129 |  0.0226   |
+| dickens        | novel             |       10192479 | 9.72 MB            | zstd        | {"level_or_option": 10} |      3217662 | 3.07 MB          |         0.31569  |  0.253852 |
+| dickens        | novel             |       10192479 | 9.72 MB            | zstd        | {"level_or_option": 20} |      2849126 | 2.72 MB          |         0.279532 |  3.1989   |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | gzip        | {"compresslevel": 1}    |     42298819 | 40.34 MB         |         0.422988 |  0.781244 |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | gzip        | {"compresslevel": 5}    |     36879137 | 35.17 MB         |         0.368791 |  1.94522  |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | gzip        | {"compresslevel": 9}    |     36475837 | 34.79 MB         |         0.364758 |  3.21007  |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | bz2         | {"compresslevel": 1}    |     33259601 | 31.72 MB         |         0.332596 |  4.73733  |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | bz2         | {"compresslevel": 5}    |     29997085 | 28.61 MB         |         0.299971 |  4.53942  |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | bz2         | {"compresslevel": 9}    |     29008791 | 27.66 MB         |         0.290088 |  4.58266  |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | lzma        | {}                      |     26375797 | 25.15 MB         |         0.263758 | 38.8323   |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | snappy      | {}                      |     56555068 | 53.93 MB         |         0.56555  |  0.206611 |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | lz4         | {}                      |     57262318 | 54.61 MB         |         0.572623 |  0.175534 |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | lz4         | {}                      |     57262318 | 54.61 MB         |         0.572623 |  0.175822 |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | lz4         | {}                      |     57262318 | 54.61 MB         |         0.572623 |  0.174165 |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | zstd        | {"level_or_option": 1}  |     40667603 | 38.78 MB         |         0.406676 |  0.202303 |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | zstd        | {"level_or_option": 10} |     30635053 | 29.22 MB         |         0.30635  |  2.19189  |
+| enwik8         | english wikipedia |      100000033 | 95.37 MB           | zstd        | {"level_or_option": 20} |     25952589 | 24.75 MB         |         0.259526 | 44.8258   |
+| bliss          | image             |         369303 | 360.65 KB          | gzip        | {"compresslevel": 1}    |       369224 | 360.57 KB        |         0.999786 |  0.005587 |
+| bliss          | image             |         369303 | 360.65 KB          | gzip        | {"compresslevel": 5}    |       369307 | 360.65 KB        |         1.00001  |  0.006258 |
+| bliss          | image             |         369303 | 360.65 KB          | gzip        | {"compresslevel": 9}    |       369307 | 360.65 KB        |         1.00001  |  0.006142 |
+| bliss          | image             |         369303 | 360.65 KB          | bz2         | {"compresslevel": 1}    |       369517 | 360.86 KB        |         1.00058  |  0.023907 |
+| bliss          | image             |         369303 | 360.65 KB          | bz2         | {"compresslevel": 5}    |       368336 | 359.70 KB        |         0.997382 |  0.023685 |
+| bliss          | image             |         369303 | 360.65 KB          | bz2         | {"compresslevel": 9}    |       368336 | 359.70 KB        |         0.997382 |  0.023604 |
+| bliss          | image             |         369303 | 360.65 KB          | lzma        | {}                      |       369381 | 360.72 KB        |         1.00021  |  0.039876 |
+| bliss          | image             |         369303 | 360.65 KB          | snappy      | {}                      |       369257 | 360.60 KB        |         0.999875 |  3.7e-05  |
+| bliss          | image             |         369303 | 360.65 KB          | lz4         | {}                      |       370699 | 362.01 KB        |         1.00378  |  5.8e-05  |
+| bliss          | image             |         369303 | 360.65 KB          | lz4         | {}                      |       370699 | 362.01 KB        |         1.00378  |  2.8e-05  |
+| bliss          | image             |         369303 | 360.65 KB          | lz4         | {}                      |       370699 | 362.01 KB        |         1.00378  |  2.8e-05  |
+| bliss          | image             |         369303 | 360.65 KB          | zstd        | {"level_or_option": 1}  |       369321 | 360.67 KB        |         1.00005  |  0.000277 |
+| bliss          | image             |         369303 | 360.65 KB          | zstd        | {"level_or_option": 10} |       369321 | 360.67 KB        |         1.00005  |  0.000485 |
+| bliss          | image             |         369303 | 360.65 KB          | zstd        | {"level_or_option": 20} |       369321 | 360.67 KB        |         1.00005  |  0.008885 |
+| osdb           | binary            |        5233351 | 4.99 MB            | gzip        | {"compresslevel": 1}    |      5232347 | 4.99 MB          |         0.999808 |  0.077706 |
+| osdb           | binary            |        5233351 | 4.99 MB            | gzip        | {"compresslevel": 5}    |      5232013 | 4.99 MB          |         0.999744 |  0.085602 |
+| osdb           | binary            |        5233351 | 4.99 MB            | gzip        | {"compresslevel": 9}    |      5232013 | 4.99 MB          |         0.999744 |  0.085457 |
+| osdb           | binary            |        5233351 | 4.99 MB            | bz2         | {"compresslevel": 1}    |      5272235 | 5.03 MB          |         1.00743  |  0.355057 |
+| osdb           | binary            |        5233351 | 4.99 MB            | bz2         | {"compresslevel": 5}    |      5259099 | 5.01 MB          |         1.00492  |  0.346162 |
+| osdb           | binary            |        5233351 | 4.99 MB            | bz2         | {"compresslevel": 9}    |      5257552 | 5.01 MB          |         1.00462  |  0.350218 |
+| osdb           | binary            |        5233351 | 4.99 MB            | lzma        | {}                      |      5158041 | 4.92 MB          |         0.98561  |  0.739247 |
+| osdb           | binary            |        5233351 | 4.99 MB            | snappy      | {}                      |      5233595 | 4.99 MB          |         1.00005  |  0.00062  |
+| osdb           | binary            |        5233351 | 4.99 MB            | lz4         | {}                      |      5253873 | 5.01 MB          |         1.00392  |  0.000578 |
+| osdb           | binary            |        5233351 | 4.99 MB            | lz4         | {}                      |      5253873 | 5.01 MB          |         1.00392  |  0.000524 |
+| osdb           | binary            |        5233351 | 4.99 MB            | lz4         | {}                      |      5253873 | 5.01 MB          |         1.00392  |  0.000506 |
+| osdb           | binary            |        5233351 | 4.99 MB            | zstd        | {"level_or_option": 1}  |      5233481 | 4.99 MB          |         1.00002  |  0.001139 |
+| osdb           | binary            |        5233351 | 4.99 MB            | zstd        | {"level_or_option": 10} |      5233481 | 4.99 MB          |         1.00002  |  0.003949 |
+| osdb           | binary            |        5233351 | 4.99 MB            | zstd        | {"level_or_option": 20} |      5154157 | 4.92 MB          |         0.984867 |  0.275969 |
++----------------+-------------------+----------------+--------------------+-------------+-------------------------+--------------+------------------+------------------+-----------+

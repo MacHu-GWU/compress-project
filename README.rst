@@ -1,8 +1,12 @@
 
-.. image:: https://github.com/MacHu-GWU/compress-project/workflows/CI/badge.svg
+.. image:: https://readthedocs.org/projects/compress/badge/?version=latest
+    :target: https://compress.readthedocs.io/en/latest/
+    :alt: Documentation Status
+
+.. image:: https://github.com/MacHu-GWU/compress-project/actions/workflows/main.yml/badge.svg
     :target: https://github.com/MacHu-GWU/compress-project/actions?query=workflow:CI
 
-.. image:: https://codecov.io/gh/MacHu-GWU/compress-project/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/MacHu-GWU/compress-project/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/MacHu-GWU/compress-project
 
 .. image:: https://img.shields.io/pypi/v/compress.svg
@@ -14,20 +18,19 @@
 .. image:: https://img.shields.io/pypi/pyversions/compress.svg
     :target: https://pypi.python.org/pypi/compress
 
+.. image:: https://img.shields.io/badge/Release_History!--None.svg?style=social
+    :target: https://github.com/MacHu-GWU/compress-project/blob/main/release-history.rst
+
 .. image:: https://img.shields.io/badge/STAR_Me_on_GitHub!--None.svg?style=social
     :target: https://github.com/MacHu-GWU/compress-project
 
 ------
 
-
 .. image:: https://img.shields.io/badge/Link-Document-blue.svg
-    :target: http://compress.my-docs.com/index.html
+    :target: https://compress.readthedocs.io/en/latest/
 
 .. image:: https://img.shields.io/badge/Link-API-blue.svg
-    :target: http://compress.my-docs.com/py-modindex.html
-
-.. image:: https://img.shields.io/badge/Link-Source_Code-blue.svg
-    :target: http://compress.my-docs.com/py-modindex.html
+    :target: https://compress.readthedocs.io/en/latest/py-modindex.html
 
 .. image:: https://img.shields.io/badge/Link-Install-blue.svg
     :target: `install`_
@@ -47,63 +50,64 @@
 
 Welcome to ``compress`` Documentation
 ==============================================================================
+.. image:: https://compress.readthedocs.io/en/latest/_static/compress-logo.png
+    :target: https://compress.readthedocs.io/en/latest/
 
-There's lots of mature data compression algorithm you can choose from, ``compress`` provides **normalized API** to use them and **switch between them**.
+``compress`` provides a unified interface for various mature data compression algorithms. It supports algorithms from both the Python Standard Library and the community, offering a range of options for different compression needs.
 
-It supports:
+**Supported Algorithms**
 
-From Python Standard library:
+**From Python Standard library**
 
 - `zlib <https://docs.python.org/2/library/zlib.html>`_.
 - `bz2 <https://docs.python.org/2/library/bz2.html>`_.
-- `lzma <https://docs.python.org/3/library/lzma.html>`_, high compression ratio but slow
+- `lzma <https://docs.python.org/3/library/lzma.html>`_, high compression ratio but slow.
 
-From Community (Additional Library Required):
+**From Community (Additional Library Required)**
 
 - `snappy <https://pypi.python.org/pypi/python-snappy>`_, from Google, lower compression ratio but super fast! (on MacOS, you need to install it via ``brew install snappy``, on Ubuntu, you need ``sudo apt-get install libsnappy-dev``.
 - `lz4 <https://pypi.python.org/pypi/lz4>`_, lower ratio, super fast!
+- `pyzstd <https://pypi.python.org/pypi/pyzstd>`_, very fast!
 
-.. note::
+Note: Community libraries are not installed by default with compress. To include them, use:
 
-    some package are not installed along with ``compress``. Because **all of them needs C compiler**, you have to manually install them. If you have trouble installing C compiler for your OS, read `THIS TUTORIAL <https://github.com/MacHu-GWU/Setup-Environment-for-Python-Developer/blob/master/05-FAQ-Failed-to-compile-source-code.rst>`_.
+.. code-block:: bash
 
-Usage::
+    pip install compress[lz4,snappy,zstd]
 
-    >>> from compress import Compressor
-    >>> binary_data = ("hello world! " * 100).encode("utf-8")
-    >>> c = Compressor()
-    >>> c.use_gzip() # or use_bz2, use_lzma, use_lz4, use_snappy
-    >>> c.compress(binary_data, zlib_level=9)
-    >>> c.decompress(binary_data)
+These libraries require a C compiler. If you encounter issues installing the C compiler for your OS, refer to `this tutorial <https://github.com/MacHu-GWU/Setup-Environment-for-Python-Developer/blob/master/05-FAQ-Failed-to-compile-source-code.rst>`_.
 
+**Usage Example**
 
-Other API for lazy developer::
+.. code-block:: python
 
-    >>> import compress
-    >>> compress.compress_bytes_to_bytes
-    >>> compress.compress_str_to_bytes
-    >>> compress.compress_bytes_to_b64str # compress, and returns b64 encoded str
-    >>> compress.compress_str_to_b64str # compress string and returns b64 encoded str
+    import sys
+    import compress.api as compress
 
-    >>> compress.decompress_bytes_to_bytes # inverse of compress_bytes_to_bytes
-    >>> compress.decompress_bytes_to_str # inverse of compress_str_to_bytes
-    >>> compress.decompress_b64str_to_bytes # inverse of compress_bytes_to_b64str
-    >>> compress.decompress_b64str_to_str # inverse of compress_str_to_b64str
+    data = ("hello world" * 1000).encode("utf-8")
+    print(f"before: {sys.getsizeof(data)}")
 
-        compress_bytes_to_bytes, compress_str_to_bytes,
-    compress_bytes_to_b64str, compress_str_to_b64str,
-    decompress_bytes_to_bytes, decompress_bytes_to_str,
-    decompress_b64str_to_bytes, decompress_b64str_to_str,
+    data_compressed = compress.compress(
+        algo=compress.Algorithm.gzip,
+        data=data,
+        kwargs={"compresslevel": 9},
+    )
+    print(f"after: {sys.getsizeof(data_compressed)}")
 
+**Benchmark**
 
 `This website <https://quixdb.github.io/squash-benchmark/>`_ provides comprehensive comparison and visualization. But how do you know **how it works on your own production environment?**.
 
-``compress`` comes with a tool to run benchmark test for **All test case, All algorithm, All parameters**, and you will get informative stats about ratio, compress/decompress speed in ``.tab`` and ``ascii table`` format. Then You are able to visualize it in the way you preferred.
+``compress`` comes with a tool to run benchmark test for **All test case, All algorithm, All parameters**, and you will get informative stats about ratio, compress/decompress speed in ``ascii table`` format. Then You are able to visualize it in the way you preferred.
 
-To run benchmark test, just::
+To run benchmark test, just do:
 
-    $ pip install -r requirements-benchmark.txt
-    $ python ./benchmark/run.py
+.. code-block:: bash
+
+    pip install -r requirements-benchmark.txt
+    python ./benchmark/run_benchmark.py
+
+Then you can find the result at `benchmark/result.txt </Users/sanhehu/Documents/GitHub/compress-project/benchmark/result.txt>`_.
 
 
 .. _install:
@@ -111,7 +115,7 @@ To run benchmark test, just::
 Install
 ------------------------------------------------------------------------------
 
-``compress`` is released on PyPI, so all you need is:
+``compress`` is released on PyPI, so all you need is to:
 
 .. code-block:: console
 

@@ -1,7 +1,6 @@
 # User Settings
-compress_venv/
 compress.egg-info/
-compress-*/
+tmp/
 
 
 # Byte-compiled / optimized / DLL files
@@ -90,8 +89,6 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
-
-
 
 # Spyder project settings
 .spyderproject

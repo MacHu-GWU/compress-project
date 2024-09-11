@@ -1,16 +1,24 @@
-sphinx==1.8.1
-
-# Theme
-
-sphinx_rtd_theme
-
-# Extensions
-
-sphinx-jinja        # allow jinja2 template
-sphinx-copybutton   # add copy to clipboard button for code block
-docfly>=0.0.17      # auto API manual, auto Table of Content
-rstobj>=0.0.5       # generate list table from data
-
-# Other
-
-pygments            # live RestructuredText preview
+# This requirements file should only include dependencies for documentations
+Sphinx==5.3.0
+# enable jinja syntax in reStructuredText
+sphinx-jinja==2.0.2
+# add copy button to code block
+sphinx-copybutton==0.5.1
+# add additional design pattern to sphinx
+sphinx-design==0.5.0
+# the sphinx theme
+furo==2023.03.27
+# add jupyter notebook in sphinx doc
+nbsphinx==0.8.12
+# generate reStructuredText in Python
+rstobj==1.2.1
+# syntax highlight
+pygments==2.15.1
+# iPython
+ipython==8.10.0
+# automaticall generate .. toctree directives and API reference doc
+docfly==2.0.3
+# note: for furo-sphinx-search (https://github.com/harshil21/furo-sphinx-search)
+# you have to manually do ``pip install -r requirements-furo-sphinx-search.txt``
+# note: you need to install awscli to upload the documentation website to S3
+# awscli has werid dependency issue, so we install it out side of poetry
